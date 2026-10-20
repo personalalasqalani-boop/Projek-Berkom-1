@@ -11,18 +11,66 @@
 # KODE:
 
 # Deklarasi variabel awal yang akan digunakan: stock, menu, dll
-order_1 = 5
-order_2 = 4
-order_3 = 3
-menu = """[Menu]
 
-Order 1
-Order 2
-Order 3
+# Price
+total_price = 0
+a = 1000000
+b = 200000
+c = 500000
 
-[Keluar] """
+# Items
+grilled_bird_meat = 5
+lizard_kebab = 4
+steamed_whale_meat = 3
 keranjang = []
+menu = """
+[Menu]
 
+[Appetizer]
+[$] Desert Dumplings: 
+[$] Ham Sandwich:
+
+[Main Course]
+[$$] Grilled Bird Meat: 5
+[$$] Lizard Kebab: 
+[$$] Steamed Whale Meat: 
+
+[Dessert]
+[$] Black Dessert (Signature):
+[$] Dark Pudding:
+
+[Drinks]
+[$] Sutaecha: 
+[$] Milk Tea: 
+
+[Pet Menu]
+[] Good Feed:
+[] Organic Feed:
+
+[Keluar]
+"""
+
+menu_appetizer = """
+[Appetizer]
+[$]
+[$]
+"""
+menu_mainCourse = """
+[Main Course]
+[$$] Grilled Bird Meat: 5
+[$$] Order 2
+[$$] Order 3
+"""
+menu_dessert = """
+[Dessert]
+[$] Black Dessert (Signature):
+[$]
+"""
+menu_drinks = """
+[Drinks]
+[$]
+[$]
+"""
 # Tampilan awal menu dan input
 print(menu)
 
@@ -43,26 +91,29 @@ if pilihan_action == "y":
             "Pilih order atau keluar: [1/2/3/Keluar] ").lower()
 
         if pilihan_order == "1":
-            order_1 = order_1 - 1  # Ngurangin stock
-            if order_1 >= 0:
-                keranjang.append("Order 1")  # Nambah order ke keranjang
-                print("Order 1 sudah ditambahkan ke keranjang!")
+            if grilled_bird_meat >= 0:
+                grilled_bird_meat = grilled_bird_meat - 1
+                keranjang.append("Grilled Bird Meat")
+                print("Grilled Bird Meat sudah ditambahkan ke keranjang!")
+                total_price = total_price + a
             else:
                 print("Order habis! Silahkan pilih order lain")
 
         elif pilihan_order == "2":
-            order_2 = order_2 - 1
-            if order_2 >= 0:
-                keranjang.append("Order 2")
-                print("Order 2 sudah ditambahkan ke keranjang!")
+            if lizard_kebab >= 0:
+                lizard_kebab = lizard_kebab - 1
+                keranjang.append("Lizard Kebab")
+                print("Lizard Kebab sudah ditambahkan ke keranjang!")
+                total_price = total_price + b
             else:
                 print("Order habis! Silahkan pilih order lain")
 
         elif pilihan_order == "3":
-            order_3 = order_3 - 1
-            if order_3 >= 0:
-                keranjang.append("Order 3")
-                print("Order 3 sudah ditambahkan ke keranjang!")
+            if steamed_whale_meat >= 0:
+                steamed_whale_meat = steamed_whale_meat - 1
+                keranjang.append("Steamed Whale Meat")
+                print("Steamed Whale Meat sudah ditambahkan ke keranjang!")
+                total_price = total_price + c
             else:
                 print("Order habis! Silahkan pilih order lain")
 
@@ -85,6 +136,7 @@ if pilihan_action == "y":
                 print("Berikut adalah pesanan anda: ")
                 for pesanan in keranjang:
                     print(pesanan)
+                    print(f"Total pembayaran: {total_price}")
                 break
 
             elif not keranjang:
